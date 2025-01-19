@@ -19,3 +19,4 @@ describe('GET /api/v1/health', () => {
     expect(parseFloat(response.body.uptime)).toBeGreaterThan(0);
   });
 });
+
