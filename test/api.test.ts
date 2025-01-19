@@ -12,3 +12,4 @@ describe('GET /api', () => {
     expect(response.body.message).toBe('Hello, world!');
   });
 });
+
