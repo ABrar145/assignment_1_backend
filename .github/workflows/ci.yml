@@ -1,41 +1,17 @@
-name: CI Workflow
-
+name: Node.js CI
 on:
-  push:
-    branches:
-      - main  # or specify the branch you want to trigger the workflow
-  pull_request:
-    branches:
-      - main  # trigger on pull requests to the main branch
-
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
 jobs:
-  build:
-    runs-on: ubuntu-latest  # Choose the appropriate runner for your environment
-
-    steps:
-      # Checkout the repository
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      # Set up Node.js (with version, adjust as needed)
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'  # Specify the Node.js version (adjust as needed)
-
-      # Install dependencies
-      - name: Install dependencies
-        run: |
-          npm install
-
-      # Run linting (if you have a linter configured)
-      - name: Run linting
-        run: |
-          npm run lint  # Ensure linting is part of your npm scripts
-
-      # Run tests
-      - name: Run tests
-        run: |
-          npx jest  # Run your tests using Jest (or your test command)
-
-      # Optionally, you can add additional steps such as deployment, notifications, etc.
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Use Node.js
+              uses: actions/setup-node@v2
+              with:
+                  node-version: "14"
+            - run: npm install
+            - run: npm test
